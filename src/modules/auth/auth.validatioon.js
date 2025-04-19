@@ -16,6 +16,6 @@ export const signUPValdationSchema = Joi.object().keys({
 export const loginSchema = Joi.object().keys({
 
     email: genralValidation.email.required(),
-    password: genralValidation.password.required()
-
+    password: genralValidation.password.required(),
+    "accept-language": genralValidation["accept-language"]
 }).required()
