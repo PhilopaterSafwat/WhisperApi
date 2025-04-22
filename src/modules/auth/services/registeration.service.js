@@ -53,6 +53,5 @@ export const login = asyncHandler(async (req, res, next) => {
 })
 export const confirmEmail = (req, res, next) => {
 
-
     return res.status(200).json({ message: "confirm-email" })
 }
