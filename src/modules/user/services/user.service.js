@@ -4,6 +4,8 @@ import { asyncHandler } from "../../../utils/error/error.js";
 import { successRes } from "../../../utils/response/success.response.js";
 import { genrateEncryption } from "../../../utils/security/encryption.js";
 import { compareHashing, genrateHashing } from "../../../utils/security/hash.js";
+import jwt from "jsonwebtoken";
+
 
 export const FindAll = asyncHandler(
     async (req, res, next) => {
@@ -39,9 +41,5 @@ export const freezeAccount = asyncHandler(
         const user = await userModel.findByIdAndUpdate(req.user._id, { isDeleted: true, changePasswordTime: Date.now() }, { new: true, runValidators: true })
         return successRes({ res, data: { user } })
     })
-export const confirmEmail = asyncHandler(
-    async (req, res, next) => {
-        const user = await userModel.findByIdAndUpdate(req.params.userId, { confirmEmail: true }, { new: true, runValidators: true })
-        return successRes({ res, data: { user } })
-    })
+
 

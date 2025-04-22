@@ -51,7 +51,14 @@ export const login = asyncHandler(async (req, res, next) => {
     }
     return successRes({ res, data: { token } })
 })
-export const confirmEmail = (req, res, next) => {
+export const confirmEmail = asyncHandler(
+    async (req, res, next) => {
+        console.log(process.env.Email_TOKEN_SIGNTURE);
 
-    return res.status(200).json({ message: "confirm-email" })
-}
+        const { email } = jwt.verify(req.headers.authorization.split(" ")[1], process.env.Email_TOKEN_SIGNTURE)
+        console.log(email);
+
+        const user = await userModel.findOneAndUpdate({ email }, { confirmEmail: true }, { new: true, runValidators: true })
+        return successRes({ res, data: { user } })
+    }
+)

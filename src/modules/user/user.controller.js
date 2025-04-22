@@ -11,12 +11,10 @@ router.get("/profile",
     authentication(),
     authorization(endpoint.profile),
     UserServices.FindAll)
-router.patch("/confirmEmail/:userId",
-    UserServices.confirmEmail)
-
-router.get("/profile/:userId",
-    valdation(shareProfileValidation),
-    UserServices.shareProfile)
+    ,
+    router.get("/profile/:userId",
+        valdation(shareProfileValidation),
+        UserServices.shareProfile)
 
 router.patch("/updateProfile",
     valdation(updateProfile),

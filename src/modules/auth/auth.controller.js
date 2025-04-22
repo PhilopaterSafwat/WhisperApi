@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as registerationServices from "./services/registeration.service.js"
 import { valdation } from "../../middleware/valdation.middelware.js";
 import * as validetor from "./auth.validatioon.js";
+import { authentication } from "../../middleware/auth.middleware.js";
 
 const router = Router()
 
@@ -10,6 +11,6 @@ const router = Router()
 
 router.post("/signup", valdation(validetor.signUPValdationSchema), registerationServices.signup)
 router.post("/login", valdation(validetor.loginSchema), registerationServices.login)
-router.get("/confirm-email", registerationServices.confirmEmail)
+router.patch("/confirm-email", registerationServices.confirmEmail)
 
 export default router
