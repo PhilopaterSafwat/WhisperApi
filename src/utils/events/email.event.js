@@ -8,7 +8,7 @@ emailEvent.on("sendConfirmEmail", async ({ email } = {}) => {
 
     const emailToken = jwt.sign({ email }, process.env.Email_TOKEN_SIGNTURE)
 
-    const emailLink = `${process.env.FRONT_LINK}/cofirm-email/${emailToken}`
+    const emailLink = `${process.env.FRONT_LINK}/${emailToken}`
 
     const html = confirmEmailTemplate({ link: emailLink })
 
