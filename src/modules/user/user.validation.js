@@ -1,7 +1,9 @@
 import Joi from "joi";
 import { genralValidation } from "../../middleware/valdation.middelware.js";
 export const shareProfileValidation = Joi.object().keys({
-    userId: genralValidation.userId.required()
+    userId: genralValidation.userId.required(),
+    "accept-language": genralValidation["accept-language"]
+
 }).required()
 export const updateProfile = Joi.object().keys({
     userName: genralValidation.userName,
