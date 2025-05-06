@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken";
 
 export const FindAll = asyncHandler(
     async (req, res, next) => {
-        const messages = (await messageModel.find({ recipientId: req.user._id }))
+        const messages = (await messageModel.find({ recipientId: req.user._id, isDeleted: false }))
         return successRes({ res, data: { user: req.user, messages } })
     })
 export const shareProfile = asyncHandler(

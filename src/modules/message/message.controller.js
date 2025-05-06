@@ -6,4 +6,8 @@ const router = Router()
 router.post("/",
     valdation(messageValidation),
     messageServices.sendMassege)
+router.put("/addFavorite",
+    messageServices.addFavoriteMassege)
+router.put("/delete",
+    messageServices.deleteMassege)
 export default router

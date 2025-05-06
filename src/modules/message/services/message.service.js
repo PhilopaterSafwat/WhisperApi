@@ -13,3 +13,23 @@ export const sendMassege = asyncHandler(
         successRes({ res, message: "Done", status: 201, data: { newMessage } })
     }
 )
+export const addFavoriteMassege = asyncHandler(
+    async (req, res, next) => {
+        const { recipientId } = req.body
+        const favoriteMassege = await messageModel.findByIdAndUpdate(recipientId, { isFavorite: true }, { new: true, runValidators: true })
+        if (!favoriteMassege) {
+            return next(new Error("In-Valid account", { cause: 404 }))
+        }
+        successRes({ res, message: "Done", status: 201, data: { favoriteMassege } })
+    }
+)
+export const deleteMassege = asyncHandler(
+    async (req, res, next) => {
+        const { recipientId } = req.body
+        const deleteMassege = await messageModel.findByIdAndUpdate(recipientId, { isDeleted: true }, { new: true, runValidators: true })
+        if (!deleteMassege) {
+            return next(new Error("In-Valid account", { cause: 404 }))
+        }
+        successRes({ res, message: "Done", status: 201, data: { deleteMassege } })
+    }
+)

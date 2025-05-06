@@ -13,7 +13,9 @@ const messageSchema = new Schema({
         type: Types.ObjectId,
         ref: "User",
         required: true
-    }
+    },
+    isDeleted: { type: Boolean, default: false },
+    isFavorite: { type: Boolean, default: false }
 },{timestamps:true})
 
 const messageModel = mongoose.models.Message || model("Message", messageSchema)
